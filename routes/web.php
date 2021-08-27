@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+// User Routes
+
 Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
     ->name('user.index');
 
@@ -25,6 +27,8 @@ Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'
 
 Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
     ->name('user.store');
+
+// Task Routes
 
 Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
     ->name('task.index');
