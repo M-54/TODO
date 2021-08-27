@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class TaskController extends Controller
 {
@@ -37,7 +38,12 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = Task::query()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id'=>$request->user_id
+        ]);
+        return redirect()->route('task.create');
     }
 
     /**
