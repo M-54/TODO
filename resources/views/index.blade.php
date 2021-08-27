@@ -16,7 +16,7 @@
         <div class="alert alert-success">User {{ session('name') }} Created Successfully!</div>
     @endif
 
-    <a href="{{ route('user.create') }}" class="btn btn-primary">Create User</a>
+    <a href="{{ route('user.create') }}" class="btn btn-info">Create User</a>
 
     <ul class="mt-4">
         @foreach($users as $user)
