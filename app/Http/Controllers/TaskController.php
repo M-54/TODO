@@ -34,11 +34,6 @@ class TaskController extends Controller
             'user_id' =>  $request->user_id
         ]);
 
-        /*$inputs = $request->only(['name', 'email', 'password']);
-        $inputs['password'] = Hash::make($inputs['password']);
-
-        User::query()->create($inputs);*/
-
         return redirect()
             ->route('task.index')
             ->with('task', $task->title);
