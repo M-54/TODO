@@ -11,14 +11,14 @@ class TaskController extends Controller
     public function index()
     {
 
-        return view('tasks')
+        return view('view_tasks/tasks')
             ->with('tasks', Tasks::all())
             ->with('title', "Tasks");
     }
 
     public function create()
     {
-        return view('createTask')
+        return view('view_tasks/createTask')
             ->with('users', User::all(['id', 'name']));
     }
 
