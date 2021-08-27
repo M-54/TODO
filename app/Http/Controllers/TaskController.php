@@ -16,7 +16,8 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        $tasks = Task::all();
+        return view('task.index')->with('tasks',$tasks);
     }
 
     /**
@@ -43,7 +44,7 @@ class TaskController extends Controller
             'description' => $request->description,
             'user_id'=>$request->user_id
         ]);
-        return redirect()->route('task.create');
+        return redirect()->route('task.index');
     }
 
     /**
