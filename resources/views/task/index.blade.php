@@ -16,7 +16,8 @@
 </head>
 
 <body>
-    <form action="{{ 'task.edit' }}" method="POST">
+    <form action="{{ route('task.update') }}" method="POST">
+        @csrf
         <!--For Page-->
         <div class="page">
             <!--Card-->
@@ -40,17 +41,28 @@
                     @foreach ($today_tasks as $task)
                         <div class="d-flex flex-row">
                             <div class="m-2">
-                                <i class="fa fa-calendar mr-2" aria-hidden="true"></i> <span
-                                    class="task mt-4">{{ $task->title }}</span> <span
-                                    class="time ml-2">{{ $task->created_at }}</span> <span
-                                    class="float-right">{{ $task->is_done }}</span>
+                                <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+                                @if ($task->is_done)
+                                    <del>
+                                        <span class="task mt-4">{{ $task->title }}</span>
+                                        <span class="time ml-2">{{ $task->created_at }}</span>
+                                    </del>
+                                    <span class="float-right">Updated at : {{ $task->updated_at }}</span>
+                                @endif
+                                @if (!$task->is_done)
+                                    <span class="task mt-4">{{ $task->title }}</span>
+                                    <span class="time ml-2">{{ $task->created_at }}</span>
+                                @endif
                             </div>
 
                             <div class="form-check m-2">
-                                <input name="is_done" class="form-check-input" type="checkbox"
-                                    id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">
-                                </label>
+                                @if (!$task->is_done)
+                                    <input name="{{ $task->id }}" class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckDefault" value="{{ $task->id }}">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">
+                                    </label>
+                                @endif
+
                             </div>
                         </div>
                     @endforeach
@@ -65,17 +77,28 @@
                     @foreach ($yesterday_tasks as $task)
                         <div class="d-flex flex-row">
                             <div class="m-2">
-                                <i class="fa fa-calendar mr-2" aria-hidden="true"></i> <span
-                                    class="task mt-4">{{ $task->title }}</span> <span
-                                    class="time ml-2">{{ $task->created_at }}</span> <span
-                                    class="float-right">{{ $task->is_done }}</span>
+                                <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+                                @if ($task->is_done)
+                                    <del>
+                                        <span class="task mt-4">{{ $task->title }}</span>
+                                        <span class="time ml-2">{{ $task->created_at }}</span>
+                                    </del>
+                                    <span class="float-right">Updated at : {{ $task->updated_at }}</span>
+                                @endif
+                                @if (!$task->is_done)
+                                    <span class="task mt-4">{{ $task->title }}</span>
+                                    <span class="time ml-2">{{ $task->created_at }}</span>
+                                @endif
                             </div>
 
                             <div class="form-check m-2">
-                                <input name="is_done" class="form-check-input" type="checkbox"
-                                    id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">
-                                </label>
+                                @if (!$task->is_done)
+                                    <input name="{{ $task->id }}" class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckDefault" value="{{ $task->id }}">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">
+                                    </label>
+                                @endif
+
                             </div>
                         </div>
                     @endforeach
@@ -90,17 +113,28 @@
                     @foreach ($lastdays_tasks as $task)
                         <div class="d-flex flex-row">
                             <div class="m-2">
-                                <i class="fa fa-calendar mr-2" aria-hidden="true"></i> <span
-                                    class="task mt-4">{{ $task->title }}</span> <span
-                                    class="time ml-2">{{ $task->created_at }}</span> <span
-                                    class="float-right">{{ $task->is_done }}</span>
+                                <i class="fa fa-calendar mr-2" aria-hidden="true"></i>
+                                @if ($task->is_done)
+                                    <del>
+                                        <span class="task mt-4">{{ $task->title }}</span>
+                                        <span class="time ml-2">{{ $task->created_at }}</span>
+                                    </del>
+                                    <span class="float-right">Updated at : {{ $task->updated_at }}</span>
+                                @endif
+                                @if (!$task->is_done)
+                                    <span class="task mt-4">{{ $task->title }}</span>
+                                    <span class="time ml-2">{{ $task->created_at }}</span>
+                                @endif
                             </div>
 
                             <div class="form-check m-2">
-                                <input name="is_done" class="form-check-input" type="checkbox"
-                                    id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">
-                                </label>
+                                @if (!$task->is_done)
+                                    <input name="{{ $task->id }}" class="form-check-input" type="checkbox"
+                                        id="flexSwitchCheckDefault" value="{{ $task->id }}">
+                                    <label class="form-check-label" for="flexSwitchCheckDefault">
+                                    </label>
+                                @endif
+
                             </div>
                         </div>
                     @endforeach

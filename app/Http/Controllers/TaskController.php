@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Task;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
@@ -43,11 +44,6 @@ class TaskController extends Controller
         ->with('yesterday_tasks',$yesterday)
         ->with('lastdays_tasks',$lastdays)
         ;
-        // var_dump($currentTime->toDateTimeString());
-        // $currentTime=$currentTime->toDateTimeString();
-        // $c=$currentTime->toArray();
-        // var_dump($currentTime->toArray());
-        // echo $c['dayOfYear'];
     }
 
     /**
@@ -93,11 +89,13 @@ class TaskController extends Controller
      *
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
+     * request
      */
-    public function edit(Task $task)
+    public function edit(Task $task, Request $request)
     {
         //
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -106,9 +104,16 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request)
     {
-        //
+            $tasks = Task::all();
+            foreach($tasks as $task){
+                if(isset($request[$task->id]))
+                {
+                    DB::update('update tasks set is_done = ? where id = ?', [true,$task->id]);
+                }
+            }
+            return redirect()->route('task.index');
     }
 
     /**

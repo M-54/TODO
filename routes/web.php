@@ -32,7 +32,7 @@ Route::get('task/create',[\App\Http\Controllers\TaskController::class,'create'])
 
 Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])->name('task.store');
 
-Route::post('task/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('task.edit');
+Route::post('task/update',[\App\Http\Controllers\TaskController::class,'update'])->name('task.update');
 
 Route::get('test',function(){
     return view('task.test');
