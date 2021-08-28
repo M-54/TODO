@@ -6,6 +6,7 @@ use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -17,7 +18,36 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::all();
-        return view('task.index')->with('tasks',$tasks);
+        $currentTime = Carbon::now();
+        $today=[];
+        $yesterday=[];
+        $lastdays=[];
+        foreach ($tasks as $task)
+        {
+            $task_time = $task->created_at->toArray();
+            $current = $currentTime->toArray();
+
+            if($task_time['dayOfYear']==$current['dayOfYear']){
+                array_push($today,$task);
+            }
+            else if($task_time['dayOfYear']==$current['dayOfYear']-1){
+                array_push($yesterday,$task);
+            }
+            else{
+                array_push($lastdays,$task);
+            }
+        }
+
+        return view('task.index')
+        ->with('today_tasks',$today)
+        ->with('yesterday_tasks',$yesterday)
+        ->with('lastdays_tasks',$lastdays)
+        ;
+        // var_dump($currentTime->toDateTimeString());
+        // $currentTime=$currentTime->toDateTimeString();
+        // $c=$currentTime->toArray();
+        // var_dump($currentTime->toArray());
+        // echo $c['dayOfYear'];
     }
 
     /**

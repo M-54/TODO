@@ -32,3 +32,9 @@ Route::get('task/create',[\App\Http\Controllers\TaskController::class,'create'])
 
 Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])->name('task.store');
 
+Route::post('task/edit',[\App\Http\Controllers\TaskController::class,'edit'])->name('task.edit');
+
+Route::get('test',function(){
+    return view('task.test');
+});
+
