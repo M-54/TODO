@@ -1,5 +1,5 @@
 @extends('layouts.default')
-@section('title','Users')
+@section('title','Users Page')
 @section('content')
     <div class="page">
         <!--Card-->
