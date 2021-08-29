@@ -1,37 +1,28 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-
-    <link href="{{ asset('css/test.css') }}" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <title>Hello, world!</title>
-</head>
-
-<body>
-    <form action="{{ route('task.update') }}" method="POST">
-        @csrf
-        <!--For Page-->
+@extends('layouts.default')
+@section('title','Tasks Page')
+@section('content')
+    
+    <!--For Page-->
         <div class="page">
             <!--Card-->
             <div class="card">
                 <!--Card Header-->
                 <div class="card-header d-flex flex-row">
-                    <h1 class="col-8">Tasks List</h1>
+                    <h1 class="col-10">Tasks List</h1>
                     <a href="{{ route('task.create') }}" class="btn btn-primary btn-lg col-2 m-2"><b>Create
                             Task</b></a>
-                    <button name='update' type="submit"
-                        class="btn btn-secondary btn-lg col-2 m-2"><b>Update</b></button>
                 </div>
                 <!--Card Body-->
                 <div class="card-body">
+                    @if(session('task'))
+                        <div class="alert alert-danger">Task ''{{ session('task') }}'' Deleted Successfully!</div>
+                    @endif
+                    @if(session('is_done'))
+                        <div class="alert alert-warning">Task ''{{ session('is_done') }}'' Done</div>
+                    @endif
+                    @if(session('create'))
+                        <div class="alert alert-success">Task ''{{ session('create') }}'' created Successfully</div>
+                    @endif
                     <p class="heading1"><span class="today">Today</span></p>
                     @if (empty($today_tasks))
                         <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -55,14 +46,21 @@
                                 @endif
                             </div>
 
-                            <div class="form-check m-2">
+                            <div class="m-2">
                                 @if (!$task->is_done)
-                                    <input name="{{ $task->id }}" class="form-check-input" type="checkbox"
-                                        id="flexSwitchCheckDefault" value="{{ $task->id }}">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">
-                                    </label>
+                                <form action="{{ route('task.update') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" value="{{ $task->id }}" name="id">
+                                    <button type="submit" class="fa fa-check" aria-hidden="true"></button>
+                                </form>
                                 @endif
-
+                            </div>
+                            <div class="m-2">
+                                <form method="POST" action="{{route('task.delete')}}">
+                                        @csrf
+                                        <input type="hidden" value="{{ $task->id }}" name="id"> 
+                                        <button type="submit" class="fa fa-trash" aria-hidden="true"></button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
@@ -91,14 +89,22 @@
                                 @endif
                             </div>
 
-                            <div class="form-check m-2">
+                            <div class="m-2">
                                 @if (!$task->is_done)
-                                    <input name="{{ $task->id }}" class="form-check-input" type="checkbox"
-                                        id="flexSwitchCheckDefault" value="{{ $task->id }}">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">
-                                    </label>
+                                    <form action="{{ route('task.update') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $task->id }}" name="id">
+                                        <button type="submit" class="fa fa-check" aria-hidden="true"></button>
+                                    </form>
                                 @endif
 
+                            </div>
+                            <div class="m-2">
+                                <form method="POST" action="{{route('task.delete')}}">
+                                        @csrf
+                                        <input type="hidden" value="{{ $task->id }}" name="id"> 
+                                        <button type="submit" class="fa fa-trash" aria-hidden="true"></button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
@@ -127,14 +133,22 @@
                                 @endif
                             </div>
 
-                            <div class="form-check m-2">
+                            <div class="m-2">
                                 @if (!$task->is_done)
-                                    <input name="{{ $task->id }}" class="form-check-input" type="checkbox"
-                                        id="flexSwitchCheckDefault" value="{{ $task->id }}">
-                                    <label class="form-check-label" for="flexSwitchCheckDefault">
-                                    </label>
+                                    <form action="{{ route('task.update') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" value="{{ $task->id }}" name="id">
+                                        <button type="submit" class="fa fa-check" aria-hidden="true"></button>
+                                    </form>
                                 @endif
 
+                            </div>
+                            <div class="m-2">
+                                <form method="POST" action="{{route('task.delete')}}">
+                                        @csrf
+                                        <input type="hidden" value="{{ $task->id }}" name="id"> 
+                                        <button type="submit" class="fa fa-trash" aria-hidden="true"></button>
+                                </form>
                             </div>
                         </div>
                     @endforeach
@@ -145,25 +159,4 @@
             </div>
 
         </div>
-    </form>
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
-        integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
-        integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous">
-    </script>
-    -->
-</body>
-
-</html>
+@endsection
