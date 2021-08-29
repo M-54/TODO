@@ -15,6 +15,7 @@
                 @if(session('name'))
                     <div class="alert alert-success">User {{ session('name') }} Created Successfully!</div>
                 @endif
+                
                 @foreach ($users as $user)
                     <div class="d-flex flex-row">
                         <div class="m-2">

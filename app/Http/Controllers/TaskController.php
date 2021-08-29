@@ -70,7 +70,7 @@ class TaskController extends Controller
             'description' => $request->description,
             'user_id'=>$request->user_id
         ]);
-        return redirect()->route('task.index');
+        return redirect()->route('task.index')->with('create',$task->title);
     }
 
     /**
@@ -106,14 +106,12 @@ class TaskController extends Controller
      */
     public function update(Request $request)
     {
-        $tasks = Task::all();
-        foreach($tasks as $task){
-            if(isset($request[$task->id]))
-            {
-                DB::update('update tasks set is_done = ? where id = ?', [true,$task->id]);
-            }
+        if(isset($request["id"]))
+        {
+            $task=Task::query()->find($request["id"]);
+            DB::update('update tasks set is_done = ? where id = ?', [true,$request["id"]]);
         }
-        return redirect()->route('task.index');
+        return redirect()->route('task.index')->with('is_done',$task->title);
     }
 
     /**
@@ -122,8 +120,13 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Request $request)
     {
-        //
+        if(isset($request["id"])){
+            $task=Task::query()->find($request["id"]);
+            DB::table('tasks')->where('id',$request["id"])->delete();
+        }
+        return redirect()->route('task.index')->with('task',$task->title);
+        // echo $request["id"];
     }
 }
