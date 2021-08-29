@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 })->name('welcome');
 
 Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
@@ -34,7 +34,7 @@ Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])-
 
 Route::post('task/update',[\App\Http\Controllers\TaskController::class,'update'])->name('task.update');
 
-Route::get('test',function(){
-    return view('task.test');
-});
+Route::post('task/delete',[\App\Http\Controllers\TaskController::class,'delete'])->name('task.delete');
+
+
 
