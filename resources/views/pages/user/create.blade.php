@@ -1,4 +1,4 @@
-@extends('layoutes.default')
+@extends('layouts.default')
 @section('title','Create User Page')
 @section('content')
     <div class="page">

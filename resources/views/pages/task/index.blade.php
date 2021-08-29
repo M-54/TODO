@@ -1,4 +1,4 @@
-@extends('layoutes.default')
+@extends('layouts.default')
 @section('title','Tasks Page')
 @section('content')
     <form action="{{ route('task.update') }}" method="POST">

@@ -1,4 +1,4 @@
-@extends('layoutes.default')
+@extends('layouts.default')
 @section('title','Create Task Page')
 @section('content')
 
