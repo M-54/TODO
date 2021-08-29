@@ -113,7 +113,7 @@ class TaskController extends Controller
                 DB::update('update tasks set is_done = ? where id = ?', [true,$task->id]);
             }
         }
-        return redirect()->route('pages.task.index');
+        return redirect()->route('task.index');
     }
 
     /**
