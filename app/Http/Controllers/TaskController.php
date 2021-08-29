@@ -39,7 +39,7 @@ class TaskController extends Controller
             }
         }
 
-        return view('task.index')
+        return view('pages.task.index')
             ->with('today_tasks',$today)
             ->with('yesterday_tasks',$yesterday)
             ->with('lastdays_tasks',$lastdays)
@@ -54,7 +54,7 @@ class TaskController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('task.create')->with('users', $users);
+        return view('pages.task.create')->with('users', $users);
     }
 
     /**
@@ -113,7 +113,7 @@ class TaskController extends Controller
                 DB::update('update tasks set is_done = ? where id = ?', [true,$task->id]);
             }
         }
-        return redirect()->route('task.index');
+        return redirect()->route('pages.task.index');
     }
 
     /**
