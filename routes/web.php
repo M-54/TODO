@@ -32,3 +32,5 @@ Route::get('task/create',[\App\Http\Controllers\TaskController::class,'create'])
 
 Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])->name('task.store');
 
+Route::post('task/update',[\App\Http\Controllers\TaskController::class,'update'])->name('task.update');
+
