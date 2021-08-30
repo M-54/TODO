@@ -14,6 +14,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('task.index')}}">Tasks</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('register.index')}}">Register</a>
+            </li>
         </ul>
     </div>
 </nav>

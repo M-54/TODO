@@ -35,3 +35,9 @@ Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])-
 Route::post('task/update',[\App\Http\Controllers\TaskController::class,'update'])->name('task.update');
 
 Route::post('task/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('task.delete');
+
+// register routes
+
+Route::get('register',[\App\Http\Controllers\Auth\RegisterController::class,'index'])->name('register.index');
+
+Route::post('register/store',[\App\Http\Controllers\Auth\RegisterController::class,'store'])->name('register.store');
