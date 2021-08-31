@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\tasks;
+use App\Models\Task;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TasksFactory extends Factory
@@ -12,7 +12,7 @@ class TasksFactory extends Factory
      *
      * @var string
      */
-    protected $model = tasks::class;
+    protected $model = Task::class;
 
     /**
      * Define the model's default state.
