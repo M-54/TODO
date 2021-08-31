@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+    //ma mitavanim meghdar dehi konim
     protected $fillable = [
         'name',
         'email',
@@ -28,6 +29,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    //maghadiri hastan k ma nemitavanim b anha dastresi dashte bashim
     protected $hidden = [
         'password',
         'remember_token',
@@ -38,6 +41,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    //tabdil b araye mikonad
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
