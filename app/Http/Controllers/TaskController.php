@@ -15,14 +15,14 @@ class TaskController extends Controller
         $tasks = Task::all();
 
 
-        return view('indextask')
+        return view('task/index')
             ->with('tasks', $tasks)
             ->with('title', 'task page');
     }
 
     public function create()
     {
-        return view('createtask');
+        return view('task/create');
     }
 
 
