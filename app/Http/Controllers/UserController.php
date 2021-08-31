@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
+    
     public function index()
     {
         $users = User::all();
 
         //return view('index', compact('users')); # Way 1
-        return view('user/index')
+        return view('/components/user/index')
             ->with('users', $users)
             ->with('foo', 'bar')
             ->with('number', 1); # Way 2
@@ -22,7 +22,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('create');
+        return view('/components/user/create');
     }
 
     public function store(Request $request)

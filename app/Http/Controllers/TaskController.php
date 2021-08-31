@@ -10,19 +10,20 @@ use Illuminate\Support\Facades\Hash;
 
 class TaskController extends Controller
 {
+    private $dir = 'components/task';
+
     public function index()
     {
         $tasks = Task::all();
 
-
-        return view('task/index')
+        return view('/components/task/index')
             ->with('tasks', $tasks)
             ->with('title', 'task page');
     }
 
     public function create()
     {
-        return view('task/create');
+        return view('/components/task/create');
     }
 
 
