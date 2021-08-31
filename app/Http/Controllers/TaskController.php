@@ -96,6 +96,7 @@ class TaskController extends Controller
         //
     }
 
+    //TODO
 
     /**
      * Update the specified resource in storage.
@@ -106,13 +107,17 @@ class TaskController extends Controller
      */
     public function update(Request $request)
     {
-        if(isset($request["id"]))
+        //if(isset($request["id"]))
+        if($request->has("id"))
         {
             $task=Task::query()->find($request["id"]);
             DB::update('update tasks set is_done = ? where id = ?', [true,$request["id"]]);
         }
         return redirect()->route('task.index')->with('is_done',$task->title);
     }
+
+    //TODO
+    
 
     /**
      * Remove the specified resource from storage.

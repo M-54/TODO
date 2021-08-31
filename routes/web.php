@@ -34,7 +34,7 @@ Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])-
 
 Route::post('task/update',[\App\Http\Controllers\TaskController::class,'update'])->name('task.update');
 
-Route::post('task/delete',[\App\Http\Controllers\TaskController::class,'delete'])->name('task.delete');
+Route::post('task/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('task.delete');
 
 
 

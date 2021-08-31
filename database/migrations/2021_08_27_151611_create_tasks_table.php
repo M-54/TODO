@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->string('description');
             $table->boolean('is_done')->default(false);
             $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('updated_at');
 
             $table->foreignId('user_id')->constrained('users');
         });
