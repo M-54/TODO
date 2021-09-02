@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// users
+
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -26,4 +28,13 @@ Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'
 Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
     ->name('user.store');
 
+// tasks
 
+Route::get('task', [\App\Http\Controllers\TaskController::class, 'index'])
+    ->name('task.index');
+
+Route::post('task/store', [\App\Http\Controllers\TaskController::class, 'store'])
+    ->name('task.store');
+
+Route::get('task/create', [\App\Http\Controllers\TaskController::class, 'create'])
+    ->name('task.create');
