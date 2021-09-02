@@ -26,11 +26,14 @@ Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'
 Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
     ->name('user.store');
 
-Route::get('task/index', [\App\Http\Controllers\TaskController::class, 'index'])
-    ->name('task.index');
+Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
+    ->name('tasks.index');
 
-Route::get('task/create', [\App\Http\Controllers\TaskController::class, 'create'])
-    ->name('task.create');
+Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
+    ->name('tasks.create');
 
-Route::post('task/store', [\App\Http\Controllers\TaskController::class, 'store'])
-    ->name('task.store');
+Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
+    ->name('tasks.store');
+
+Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
+    ->name('tasks.show');

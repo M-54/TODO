@@ -9,15 +9,15 @@ class Task extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
     protected $fillable = [
+        'user_id',
         'title',
         'description',
-        'is_done',
-        'user_id',
+        'is_done'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
