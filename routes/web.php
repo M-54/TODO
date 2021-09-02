@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
 
+Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
+    ->name('user.index');
 
-// register routes
+Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
+    ->name('user.create');
 
-
+Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
+    ->name('user.store');
+    
 Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
     ->name('tasks.index');
 

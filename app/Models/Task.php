@@ -22,10 +22,4 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-        'title',
-        'description',
-        'user_id'
-        ];
-
-
 }
