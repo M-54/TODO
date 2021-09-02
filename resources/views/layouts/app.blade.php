@@ -24,24 +24,34 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Home</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}"
                        href="{{ route('user.index') }}">Users</a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+
+                <x-navbar route="user.index" pagename="Users"/>
+
+                {{-- <li class="nav-item">
                     <a class="nav-link {{ !request()->routeIs('user.create') ?: 'active' }}"
                        href="{{ route('user.create') }}">Create User</a>
-                </li>
+                </li> --}}
 
+                <x-navbar route="user.create" pagename="Create User"/>
+
+{{-- 
                 <li class="nav-item">
                     <a class="nav-link {{ request()->routeIs('tasks.index') ? 'active' : '' }}"
                        href="{{ route('tasks.index') }}">Tasks</a>
-                </li>
+                </li> --}}
 
-                <li class="nav-item">
-                    <a class="nav-link {{ !request()->routeIs('tasks.create') ?: 'active' }}"
-                       href="{{ route('tasks.create') }}">Create Task</a>
-                </li>
+                <x-navbar route="tasks.index" pagename="Tasks"/>
+
+
+                {{-- <li class="nav-item"> --}}
+                    {{-- <a class="nav-link {{ !request()->routeIs('tasks.create') ?: 'active' }}" --}}
+                       {{-- href="{{ route('tasks.create') }}">Create Task</a> --}}
+                {{-- </li> --}}
+                <x-navbar route="tasks.create" pagename="Create Task"/>
 
                 <!-- TODO: refactor nav-item to blade Component: https://laravel.com/docs/8.x/blade#components -->
             </ul>
