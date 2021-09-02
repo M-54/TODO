@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 //
 Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
     ->name('user.index');
+Route::get('user/login',[\App\Http\Controllers\LoginController::class,'index'])
+    ->name('user.login');
+
+Route::post('user/login',[\App\Http\Controllers\LoginController::class,'check'])
+    ->name('user.check');
 
 Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
     ->name('user.create');
