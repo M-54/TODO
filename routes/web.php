@@ -12,19 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
 
-Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
-    ->name('user.index');
+// register routes
 
-Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
-    ->name('user.create');
-
-Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
-    ->name('user.store');
 
 Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
     ->name('tasks.index');
@@ -37,3 +29,7 @@ Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'
 
 Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
     ->name('tasks.show');
+
+Route::get('register',[\App\Http\Controllers\Auth\RegisterController::class,'index'])->name('register.index');
+
+Route::post('register/store',[\App\Http\Controllers\Auth\RegisterController::class,'store'])->name('register.store');

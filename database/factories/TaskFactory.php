@@ -21,9 +21,11 @@ class TaskFactory extends Factory
      */
     public function definition()
     {
+
         // TODO
         return [
             'title' => $this->faker->word
-        ];
+];
+
     }
 }

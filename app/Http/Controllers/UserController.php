@@ -14,15 +14,17 @@ class UserController extends Controller
         $users = User::all();
 
         //return view('index', compact('users')); # Way 1
+
         return view("users.index")
-            ->with('users', $users)
-            ->with('foo', 'bar')
-            ->with('number', 1); # Way 2
+
+        
     }
 
     public function create()
     {
+
         return view('users.create');
+
     }
 
     public function store(Request $request)
@@ -30,6 +32,7 @@ class UserController extends Controller
         $user = User::query()->create([
             'name' => $request->get('name', 'NO_NAME'),
             'email' => $request->email,
+            'username'=>$request->username,
             'password' => Hash::make($request->password)
         ]);
 
