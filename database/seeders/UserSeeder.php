@@ -6,19 +6,19 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        $this->call([
-            UserSeeder::class
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'superadmin@example.com',
+            'password' => Hash::make('123456')
         ]);
-
-        \App\Models\User::factory(1000)->create();
     }
 }
