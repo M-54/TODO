@@ -13,30 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //
-Route::get('/', function () {
-    return view('pages.welcome');
-})->name('welcome');
 
-Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
-    ->name('user.index');
-
-Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
-    ->name('user.create');
-
-Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
-    ->name('user.store');
-// task routes
-Route::get('tasks', [\App\Http\Controllers\TaskController::class,'index'])->name('task.index');
-
-Route::get('task/create',[\App\Http\Controllers\TaskController::class,'create'])->name('task.create');
-
-Route::post('task/store',[\App\Http\Controllers\TaskController::class,'store'])->name('task.store');
-
-Route::post('task/update',[\App\Http\Controllers\TaskController::class,'update'])->name('task.update');
-
-Route::post('task/delete',[\App\Http\Controllers\TaskController::class,'destroy'])->name('task.delete');
 
 // register routes
+
+
+Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
+    ->name('tasks.index');
+
+Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
+    ->name('tasks.create');
+
+Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
+    ->name('tasks.store');
+
+Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
+    ->name('tasks.show');
 
 Route::get('register',[\App\Http\Controllers\Auth\RegisterController::class,'index'])->name('register.index');
 

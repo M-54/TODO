@@ -14,15 +14,17 @@ class UserController extends Controller
         $users = User::all();
 
         //return view('index', compact('users')); # Way 1
-        return view('pages.user.index')
-            ->with('users', $users)
-            ->with('foo', 'bar')
-            ->with('number', 1); # Way 2
+
+        return view("users.index")
+
+        
     }
 
     public function create()
     {
-        return view('pages.user.create');
+
+        return view('users.create');
+
     }
 
     public function store(Request $request)
