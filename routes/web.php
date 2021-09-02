@@ -25,6 +25,7 @@ Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'
 
 Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
     ->name('user.store');
+    
 
 Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
     ->name('tasks.index');
