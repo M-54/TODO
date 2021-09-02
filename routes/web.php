@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
 Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
     ->name('user.index');
 
@@ -25,7 +21,7 @@ Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'
 
 Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
     ->name('user.store');
-    
+
 Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
     ->name('tasks.index');
 
@@ -38,6 +34,3 @@ Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'
 Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
     ->name('tasks.show');
 
-Route::get('register',[\App\Http\Controllers\Auth\RegisterController::class,'index'])->name('register.index');
-
-Route::post('register/store',[\App\Http\Controllers\Auth\RegisterController::class,'store'])->name('register.store');
