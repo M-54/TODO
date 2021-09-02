@@ -13,7 +13,7 @@ class UserController extends Controller
     {
         $users = User::all();
 
-        //return view('index', compact('users')); # Way 1
+        //return view('index', compact('users')); # Way 1.
         return view('index')
             ->with('users', $users)
             ->with('foo', 'bar')
