@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -14,7 +16,8 @@ class AuthController extends Controller
     }
 
     public function showRegisterForm() {
-        // TODO
+
+        return view('auth.register');
     }
 
     public function login(Request $request)
@@ -43,7 +46,22 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // TODO
+        $validated = $request->validate([
+            'name' => 'required|min:4|string',
+            'email' => 'required|unique:users|email',
+            'password' => [Password::min(6)->letters()->numbers()]
+
+        ]);
+
+          $validated['password']=Hash::make($validated['password']);
+          
+          $user=User::create($validated);
+
+
+        return redirect()->route('auth.login')->with('success', 'ٍثبت نام شما با موفقیت انجام شد');
+
+
+
     }
 
     public function logout() {

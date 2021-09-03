@@ -53,6 +53,7 @@
                 </form>
             @else
                 <a class="btn btn-outline-success" href="{{ route('auth.form.login') }}">Login</a>
+                <a class="btn btn-outline-success" href="{{ route('auth.form.register') }}">Register</a>
             @endif
         </div>
     </div>
