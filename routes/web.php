@@ -61,3 +61,14 @@ Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm
     ->name('auth.form.login');
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
     ->name('auth.login');
+
+Route::get('test', function () {
+    $collection = collect(['taylor', 'abigail', null, 'ehsan'])
+        ->map(function ($name) {
+            return strtoupper($name);
+        })->reject(function ($name) {
+            return empty($name);
+        });
+
+    dd($collection);
+});

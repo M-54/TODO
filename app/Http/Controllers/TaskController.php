@@ -47,7 +47,14 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $task = Task::create($request->all());
+        $validated = $request->validate([
+            'user_id' => 'required|integer|exists:users,id',
+            'title' => 'required|min:10',
+            'description' => 'required'
+        ]);
+
+        // $task = Task::create($request->all());
+        $task = Task::create($validated);
 
         /*$task = new Task();
         $task->user_id = $request->get('user_id');
