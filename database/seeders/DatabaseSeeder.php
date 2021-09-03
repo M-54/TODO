@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -19,6 +20,9 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class
         ]);
 
-        \App\Models\User::factory(1000)->create();
+        // TODO: make random count task
+        \App\Models\User::factory(10)
+            ->has(Task::factory()->count(3))
+            ->create();
     }
 }

@@ -42,6 +42,17 @@ Route::group([
     Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
         ->name('tasks.show');
 
+    Route::delete('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'destroy'])
+        ->name('tasks.destroy');
+
+    # https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+    Route::delete('tasks/{task}/force', [\App\Http\Controllers\TaskController::class, 'forceDelete'])
+        ->name('tasks.forceDelete');
+
+    // TODO: بازگرداندن تسک با روش update
+    Route::patch('tasks/{task}/restore', [\App\Http\Controllers\TaskController::class, 'restore'])
+        ->name('tasks.restore');
+
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])
         ->name('auth.logout');
 });

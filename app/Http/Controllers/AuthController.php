@@ -13,6 +13,10 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
+    public function showRegisterForm() {
+        // TODO
+    }
+
     public function login(Request $request)
     {
         $email = $request->get('email');
@@ -35,6 +39,11 @@ class AuthController extends Controller
             return back()
                 ->with('message', 'ایمیل یا پسورد وارد شده صحیح نیست.');
         }
+    }
+
+    public function register(Request $request)
+    {
+        // TODO
     }
 
     public function logout() {
