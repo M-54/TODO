@@ -25,25 +25,11 @@
                     <a class="nav-link" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('user.index') ? 'active' : '' }}"
-                       href="{{ route('user.index') }}">Users</a>
+                    <a class="nav-link {{ request()->routeIs('{{ $route ?? '' }}') ? 'active' : '' }}"
+                       href="{{ $route ?? '' }}">{{ $li_name ?? '' }}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ !request()->routeIs('user.create') ?: 'active' }}"
-                       href="{{ route('user.create') }}">Create User</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link {{ request()->routeIs('tasks.index') ? 'active' : '' }}"
-                       href="{{ route('tasks.index') }}">Tasks</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link {{ !request()->routeIs('tasks.create') ?: 'active' }}"
-                       href="{{ route('tasks.create') }}">Create Task</a>
-                </li>
-
-                <!-- TODO: refactor nav-item to blade Component: https://laravel.com/docs/8.x/blade#components -->
+                
+            
             </ul>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -53,7 +39,7 @@
     </div>
 </nav>
 <div class="container">
-    @yield('content')
+    {{ $slot }}
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"

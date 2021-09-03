@@ -1,8 +1,14 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('title', 'Users')
 
-@section('content')
+    <x-slot name="route">
+        users.index
+    </x-slot>
+
+    <x-slot name="li_name">
+        Users
+    </x-slot>
+
     @if(session('name'))
         <div class="alert alert-success">User {{ session('name') }} Created Successfully!</div>
     @endif
@@ -21,4 +27,5 @@
             </li>
         @endforeach
     </ul>
-@endsection
+</x-app-layout>
+
