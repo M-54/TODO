@@ -13,7 +13,6 @@
                 <ul>
                     @foreach($user->tasks as $task)
                         <li>
-                            <!-- TODO -->
                             <a href="{{ route('tasks.show', $task) }}" target="_blank">{{ $task->title }}</a>
                         </li>
                     @endforeach

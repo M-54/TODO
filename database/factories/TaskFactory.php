@@ -23,7 +23,8 @@ class TaskFactory extends Factory
     {
         // TODO
         return [
-            'title' => $this->faker->word
+            'title' => $this->faker->word,
+            'description'=>$this->faker->text($maxNbChars = 50),
         ];
     }
 }

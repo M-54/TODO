@@ -38,3 +38,11 @@ Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'
 
 Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
     ->name('tasks.show');
+
+
+Route::get('login', [\App\Http\Controllers\LoginController::class, 'showLogin'])
+    ->name('login.show');
+    
+Route::post('login/do', [\App\Http\Controllers\LoginController::class, 'doLogin'])
+    ->name('login.do');
+
