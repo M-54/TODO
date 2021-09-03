@@ -52,7 +52,7 @@ class TaskController extends Controller
         $task->title = $request->title;
         $task->save();*/
 
-        return redirect()->route('tasks.show', $task);
+        return redirect()->route('tasks.index', $task);
     }
 
     /**

@@ -7,12 +7,12 @@
         @foreach($tasks as $task)
             <li>
                 @if($task->deleted_at)
-                    <del><a href="{{ route('tasks.show', $task) }}" target="_blank">
+                    <del><a href="{{ route('tasks.show', $task) }}">
                             {{ $task->title }} (owner: {{ $task->user->name }})
                         </a>
                     </del>
                 @else
-                    <a href="{{ route('tasks.show', $task) }}" target="_blank">
+                    <a href="{{ route('tasks.show', $task) }}">
                         {{ $task->title }} (owner: {{ $task->user->name }})
                     </a>
                 @endif
