@@ -12,30 +12,49 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-//
-Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
-    ->name('user.index');
-Route::get('user/login',[\App\Http\Controllers\LoginController::class,'index'])
-    ->name('user.login');
+//group
+Route::group([
+    'middleware' => 'auth'
+    ], function(){
+        //users
+        Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
+            ->name('user.index');
 
-Route::post('user/login',[\App\Http\Controllers\LoginController::class,'check'])
-    ->name('user.check');
+        Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
+            ->name('user.create');
 
-Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
-    ->name('user.create');
+        Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
+            ->name('user.store');
+        //tasks
+        Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
+            ->name('tasks.index');
 
-Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
-    ->name('user.store');
+        Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
+            ->name('tasks.create');
 
-Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
-    ->name('tasks.index');
+        Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
+            ->name('tasks.store');
 
-Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
-    ->name('tasks.create');
+        Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
+            ->name('tasks.show');
+    });
 
-Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
-    ->name('tasks.store');
+//auth.login
+Route::get('login',[\App\Http\Controllers\Auth\LoginController::class ,'index'])
+    ->name('auth.form.login');
 
-Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
-    ->name('tasks.show');
+Route::post('login',[\App\Http\Controllers\Auth\LoginController::class,'login'])
+    ->name('auth.login');
 
+//auth.register
+
+Route::get('register',[\App\Http\Controllers\Auth\RegisterController::class,'index'])
+    ->name('auth.form.register');
+
+Route::post('register',[\App\Http\Controllers\Auth\RegisterController::class,'register'])
+    ->name('auth.register');
+
+//auth.logout
+
+Route::post('logout',[\App\Http\Controllers\Auth\LogoutController::class,'logout'])
+    ->name('auth.logout');
