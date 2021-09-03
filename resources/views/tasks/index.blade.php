@@ -1,8 +1,13 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('title', 'Users')
+    <x-slot name="route">
+        tasks.index
+    </x-slot>
+    
+    <x-slot name="li_name">
+        Tasks
+    </x-slot>
 
-@section('content')
     <ul class="mt-4">
         @foreach($tasks as $task)
             <li>
@@ -12,4 +17,5 @@
             </li>
         @endforeach
     </ul>
-@endsection
+</x-app-layout>
+

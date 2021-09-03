@@ -1,8 +1,14 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('title', 'Create Task')
+    <x-slot name="route">
+        tasks.create
+    </x-slot>
 
-@section('content')
+    <x-slot name="li_name">
+        Create Task
+    </x-slot>
+
+
     <form class="mt-4" method="post" action="{{ route('tasks.store') }}">
         @csrf
 
@@ -35,4 +41,5 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-@endsection
+
+</x-app-layout>

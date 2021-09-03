@@ -1,8 +1,13 @@
-@extends('layouts.app')
+<x-app-layout>
 
-@section('title', 'Create User')
+    <x-slot name="route">
+        users.create
+    </x-slot>
 
-@section('content')
+    <x-slot name="li_name">
+        Create User
+    </x-slot>
+
     <form class="mt-4" method="post" action="{{ route('user.store') }}">
         @csrf
 
@@ -24,4 +29,5 @@
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-@endsection
+</x-app-layout>
+
