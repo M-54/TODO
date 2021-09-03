@@ -37,6 +37,15 @@ Route::group([
 
         Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
             ->name('tasks.show');
+
+        Route::delete('tasks/{task}',[\App\Http\Controllers\TaskController::class,'destroy'])
+            ->name('tasks.softDelete');
+
+        Route::delete('tasks/{task}/delete',[\App\Http\Controllers\TaskController::class,'forceDelete'])
+            ->name('tasks.forceDelete');
+
+        Route::patch('tasks/{task}/update',[\App\Http\Controllers\TaskController::class,'update'])
+            ->name('tasks.update');
     });
 
 //auth.login
