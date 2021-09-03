@@ -45,10 +45,15 @@
 
                 <!-- TODO: refactor nav-item to blade Component: https://laravel.com/docs/8.x/blade#components -->
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+
+            @if(auth()->check())
+                <form class="d-flex" method="post" action="{{ route('auth.logout') }}">
+                    @csrf
+                    <button class="btn btn-outline-success" type="submit">{{ auth()->user()->name }} (Logout)</button>
+                </form>
+            @else
+                <a class="btn btn-outline-success" href="{{ route('auth.form.login') }}">Login</a>
+            @endif
         </div>
     </div>
 </nav>

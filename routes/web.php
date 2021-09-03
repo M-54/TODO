@@ -17,23 +17,36 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
-    ->name('user.index');
+Route::group([
+    'middleware' => 'auth',
+], function () {
 
-Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
-    ->name('user.create');
+    Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
+        ->name('user.index');
 
-Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
-    ->name('user.store');
+    Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
+        ->name('user.create');
 
-Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
-    ->name('tasks.index');
+    Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
+        ->name('user.store');
 
-Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
-    ->name('tasks.create');
+    Route::get('tasks', [\App\Http\Controllers\TaskController::class, 'index'])
+        ->name('tasks.index');
 
-Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
-    ->name('tasks.store');
+    Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
+        ->name('tasks.create');
 
-Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
-    ->name('tasks.show');
+    Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
+        ->name('tasks.store');
+
+    Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
+        ->name('tasks.show');
+
+    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])
+        ->name('auth.logout');
+});
+
+Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm'])
+    ->name('auth.form.login');
+Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
+    ->name('auth.login');
