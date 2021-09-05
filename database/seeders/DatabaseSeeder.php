@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
         $this->call([
             UserSeeder::class
         ]);
@@ -24,5 +25,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)
             ->has(Task::factory()->count(3))
             ->create();
+=======
+        
+
     }
 }
