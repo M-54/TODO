@@ -20,6 +20,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Home</a>
@@ -54,7 +55,8 @@
             @else
                 <a class="btn btn-outline-success" href="{{ route('auth.form.login') }}">Login</a>
             @endif
-        </div>
+=======
+                    </div>
     </div>
 </nav>
 <div class="container">

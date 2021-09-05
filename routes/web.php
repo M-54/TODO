@@ -24,8 +24,14 @@ Route::group([
     Route::get('users', [\App\Http\Controllers\UserController::class, 'index'])
         ->name('user.index');
 
+
     Route::get('user/create', [\App\Http\Controllers\UserController::class, 'create'])
         ->name('user.create');
+
+Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
+    ->name('user.store');
+    
+
 
     Route::post('user/store', [\App\Http\Controllers\UserController::class, 'store'])
         ->name('user.store');
@@ -35,6 +41,7 @@ Route::group([
 
     Route::get('tasks/create', [\App\Http\Controllers\TaskController::class, 'create'])
         ->name('tasks.create');
+
 
     Route::post('tasks/store', [\App\Http\Controllers\TaskController::class, 'store'])
         ->name('tasks.store');
@@ -72,3 +79,8 @@ Route::get('test', function () {
 
     dd($collection);
 });
+=======
+Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
+    ->name('tasks.show');
+
+
