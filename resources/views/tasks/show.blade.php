@@ -3,6 +3,12 @@
 @section('title', 'Show ' . $task->title)
 
 @section('content')
+
+    @if (session('restore'))
+    <div class="alert alert-success" role="alert">{{ session('restore') }}</div>
+    @endif
+
+
     <h1>{{ $task->title }}</h1>
     <p>{{ $task->description }}</p>
 

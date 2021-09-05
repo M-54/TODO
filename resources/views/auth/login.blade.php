@@ -4,8 +4,13 @@
 
 @section('content')
 
+
     @if(session('message'))
         <div class="alert alert-danger" role="alert">{{ session('message') }}</div>
+    @endif
+
+    @if(session('success'))
+    <div class="alert alert-success" role="alert">{{ session('success') }}</div>
     @endif
 
     <form class="mt-4" method="post" action="{{ route('auth.login') }}">
