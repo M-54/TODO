@@ -54,8 +54,8 @@ class AuthController extends Controller
         ]);
 
           $validated['password']=Hash::make($validated['password']);
-          
-          $user=User::create($validated);
+
+         User::create($validated);
 
 
         return redirect()->route('auth.login')->with('success', 'ٍثبت نام شما با موفقیت انجام شد');
@@ -68,6 +68,6 @@ class AuthController extends Controller
         auth()->logout();
 
         return redirect()
-            ->route('welcome');
+            ->route('auth.login');
     }
 }
