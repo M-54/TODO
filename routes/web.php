@@ -62,6 +62,12 @@ Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
     ->name('auth.login');
 
+Route::get('register', [\App\Http\Controllers\AuthController::class, 'showRegisterForm'])
+->name('auth.form.register');
+
+Route::post('register', [\App\Http\Controllers\AuthController::class, 'register'])
+    ->name('auth.register');
+
 Route::get('test', function () {
     $collection = collect(['taylor', 'abigail', null, 'ehsan'])
         ->map(function ($name) {

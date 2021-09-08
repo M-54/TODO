@@ -21,8 +21,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // TODO: make random count task
-        \App\Models\User::factory(10)
-            ->has(Task::factory()->count(3))
-            ->create();
+            for($i=0 ; $i<10 ; $i++) {
+                $x=rand(1,50);
+                \App\Models\User::factory(1)
+                ->has(Task::factory()->count($x))
+                ->create();
+            }
+
     }
 }

@@ -3,6 +3,15 @@
 @section('title', 'Users')
 
 @section('content')
+
+@if (session('trash'))
+    <div class="alert alert-success" role="alert">{{ session('trash') }}</div>
+@endif
+
+@if (session('force'))
+    <div class="alert alert-success" role="alert">{{ session('force') }}</div>
+@endif
+
     <ul class="mt-4">
         @foreach($tasks as $task)
             <li>

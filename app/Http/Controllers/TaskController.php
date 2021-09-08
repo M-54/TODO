@@ -17,7 +17,7 @@ class TaskController extends Controller
     {
         // TODO: show deleted task
         $tasks = auth()->user()->tasks;
-        //$tasks = Task::withTrashed()->get();
+
 
         return view('tasks.index')
             ->with('tasks', $tasks);
@@ -111,7 +111,7 @@ class TaskController extends Controller
         Task::find($id)->delete();
 
         return redirect()
-            ->route('tasks.index');
+            ->route('tasks.index')->with('trash','The task is moved to trash');
     }
 
     public function forceDelete($id)
@@ -119,13 +119,19 @@ class TaskController extends Controller
         Task::withTrashed()->find($id)->forceDelete();
 
         return redirect()
-            ->route('tasks.index');
+            ->route('tasks.index')->with('force','The task is deleted.');
     }
 
     public function restore($id)
     {
-        Task::withTrashed()->find($id)->restore();
+        // Task::withTrashed()->find($id)->restore();
 
-        return back();
+        // return back();
+
+        $task=Task::withTrashed()->find($id);
+        $task->deleted_at=null;
+        $task->save();
+
+        return back()->with('restore','The task is restored from trash');
     }
 }
