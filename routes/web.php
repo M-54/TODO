@@ -42,6 +42,8 @@ Route::group([
     Route::get('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'show'])
         ->name('tasks.show');
 
+    Route::patch('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'update']);
+
     Route::delete('tasks/{task}', [\App\Http\Controllers\TaskController::class, 'destroy'])
         ->name('tasks.destroy');
 
@@ -52,6 +54,9 @@ Route::group([
     // TODO: بازگرداندن تسک با روش update
     Route::patch('tasks/{task}/restore', [\App\Http\Controllers\TaskController::class, 'restore'])
         ->name('tasks.restore');
+
+    Route::get('tasks/{task}/done', [\App\Http\Controllers\TaskController::class, 'done'])
+        ->name('tasks.done');
 
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])
         ->name('auth.logout');

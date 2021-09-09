@@ -9,16 +9,13 @@
 
     <ul class="mt-4">
         @foreach($users as $user)
-            <li>{{ $user->name }} ({{ $user->email }})
-                <ul>
-                    @foreach($user->tasks as $task)
-                        <li>
-                            <!-- TODO -->
-                            <a href="{{ route('tasks.show', $task) }}" target="_blank">{{ $task->title }}</a>
-                        </li>
-                    @endforeach
-                </ul>
+            <li>
+                <span class="d-block mb-5">{{ $user->name }} ({{ $user->email }})</span>
+                @foreach($user->tasks as $task)
+                    <x-task :item="$task" />
+                @endforeach
             </li>
+            <hr />
         @endforeach
     </ul>
 @endsection

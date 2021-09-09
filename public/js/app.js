@@ -2062,6 +2062,27 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+window.taskDone = function (id) {
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+  $.ajax({
+    'type': 'PATCH',
+    'url': '/tasks/' + id,
+    success: function success(result) {
+      // تسک اپدیت شده و جواب برای ما برمیگردد
+      $('#done_status_' + result.id).html(result.is_done ? 'Done' : 'Not Done'); // document.getElementById('done_status').innerHTML = result.is_done ? 'Done' : 'Not Done'
+    },
+    error: function error(_error) {
+      console.error(_error);
+    }
+  });
+}; // window.taskDone = () => {
+//     alert("test");
+// }
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":

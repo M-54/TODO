@@ -1,21 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Tasks')
 
 @section('content')
-    <ul class="mt-4">
+    <h1>Tasks</h1>
+
+    <div class="row">
         @foreach($tasks as $task)
-            <li>
-                @if($task->deleted_at)
-                    <del><a href="{{ route('tasks.show', $task) }}" target="_blank">
-                        {{ $task->title }} (owner: {{ $task->user->name }})
-                    </a></del>
-                @else
-                    <a href="{{ route('tasks.show', $task) }}" target="_blank">
-                        {{ $task->title }} (owner: {{ $task->user->name }})
-                    </a>
-                @endif
-            </li>
+            <x-task class="col-md-6" :id="$task->id" :item="$task" />
         @endforeach
-    </ul>
+    </div>
 @endsection

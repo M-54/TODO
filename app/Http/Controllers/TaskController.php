@@ -95,9 +95,13 @@ class TaskController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Task $task)
     {
-        //
+        $task->update([
+            'is_done' => !$task->is_done
+        ]);
+
+        return $task;
     }
 
     /**
@@ -125,6 +129,19 @@ class TaskController extends Controller
     public function restore($id)
     {
         Task::withTrashed()->find($id)->restore();
+
+        return back();
+    }
+
+    public function done(Task $task)
+    {
+        /*$task->update([
+            "is_done" => true
+        ]);*/
+
+        $task->update([
+            "is_done" => !$task->is_done
+        ]);
 
         return back();
     }
