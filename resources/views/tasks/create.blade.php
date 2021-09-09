@@ -14,7 +14,8 @@
     @endif
 
     <form class="mt-4" method="post" action="{{ route('tasks.store') }}">
-        
+        @csrf
+
         <div class="mb-3">
             <label for="exampleInputUsers1" class="form-label">User</label>
 

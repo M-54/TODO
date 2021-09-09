@@ -60,6 +60,9 @@ Route::group([
 
     Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout'])
         ->name('auth.logout');
+
+    # https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
+    Route::resource('tags', \App\Http\Controllers\TagController::class);
 });
 
 Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm'])

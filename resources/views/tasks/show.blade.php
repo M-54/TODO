@@ -27,6 +27,16 @@
             <button class="btn btn-outline-danger" type="submit">Delete</button>
         </form>
     @endif
+
+    <hr>
+
+    <div class="d-flex align-items-center justify-content-between">
+        <h2 class="m-0">Tags</h2>
+
+        <a href="{{ route('tags.create') }}" class="btn btn-primary">Create Tag</a>
+    </div>
+
+    {{ $task->tags }}
 @endsection
 
 @section('custom_scripts')

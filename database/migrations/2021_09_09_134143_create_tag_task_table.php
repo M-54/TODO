@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoftDeletesTasksTable extends Migration
+class CreateTagTaskTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddSoftDeletesTasksTable extends Migration
      */
     public function up()
     {
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->softDeletes()
-                ->after('updated_at');
+        Schema::create('tag_task', function (Blueprint $table) {
+            $table->foreignIdFor(\App\Models\Tag::class);
+            $table->foreignIdFor(\App\Models\Task::class);
         });
     }
 
@@ -26,9 +26,6 @@ class AddSoftDeletesTasksTable extends Migration
      */
     public function down()
     {
-        //Schema::dropColumns('tasks', ['deleted_at']);
-        Schema::table('tasks', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('tag_task');
     }
 }
