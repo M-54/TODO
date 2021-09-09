@@ -21,8 +21,9 @@ class TagFactory extends Factory
      */
     public function definition()
     {
-        return [
-            //
-        ];
+      return [
+        'title' => $this->faker->title,
+        'color' => $this->faker->hexColor()
+      ];
     }
 }
