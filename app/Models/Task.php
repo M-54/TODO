@@ -27,4 +27,17 @@ class Task extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    # https://laravel.com/docs/8.x/eloquent-mutators#defining-an-accessor
+    public function getTitleAttribute() {
+        return $this->attributes['id'] . "# " . $this->attributes['title'];
+    }
+
+    public function getCountTitleAttribute() {
+        return strlen($this->attributes['title']);
+    }
+
+    public function getReadTimeAttribute() {
+        return "10min";
+    }
 }

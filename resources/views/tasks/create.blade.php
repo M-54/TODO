@@ -43,6 +43,16 @@
             </label>
         </div>
 
+        <div class="mb-3">
+            <label for="exampleInputTags1" class="form-label">Tags</label>
+
+            <select id="exampleInputTags1" class="form-select" name="tags_id[]" multiple>
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->title }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @endsection

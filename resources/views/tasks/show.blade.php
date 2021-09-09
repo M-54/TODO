@@ -6,6 +6,8 @@
     <button onclick="test()">Click Me</button>
 
     <h1 id="title">{{ $task->title }}</h1>
+    <p>Title Count is: {{ $task->count_title }}</p>
+    <p>Read Time: {{ $task->read_time }}</p>
     <p>{{ $task->description }}</p>
 
     @if($task->deleted_at)
@@ -36,7 +38,22 @@
         <a href="{{ route('tags.create') }}" class="btn btn-primary">Create Tag</a>
     </div>
 
-    {{ $task->tags }}
+    <!-- TODO: حذف آخرین , -->
+    @forelse($task->tags as $tag)
+        {!! $tag->title !!},
+    @empty
+        <p>برای این کار تگی تعریف نشده است.</p>
+    @endforelse
+
+    <!-- TODO: نمایش عنوان تگ‌ها با استفاده از متدهای collection -->
+
+    {{--@if(count($tags) > 0)
+        @foreach($task->tags as $tag)
+            {{ $tag->title }},
+        @endforeach
+    @else
+        <p>برای این کار تگی تعریف نشده است.</p>
+    @endif--}}
 @endsection
 
 @section('custom_scripts')

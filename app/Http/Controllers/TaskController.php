@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class TaskController extends Controller
 {
@@ -32,12 +32,13 @@ class TaskController extends Controller
     public function create()
     {
         $users = User::all(['id', 'name']);
+        $tags = Tag::all(['id', 'title']);
 
         /*return view('tasks.create', [
             'users' => $users
         ]);*/
 
-        return view('tasks.create', compact('users'));
+        return view('tasks.create', compact('users', 'tags'));
     }
 
     /**
@@ -51,11 +52,20 @@ class TaskController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|integer|exists:users,id',
             'title' => 'required|min:10',
-            'description' => 'required'
+            'description' => 'required',
+            "tags_id" => "required|array",
+            "tags_id.*" => "required|exists:App\Models\Tag,id",
         ]);
 
         // $task = Task::create($request->all());
+        /**
+         * @var $task Task
+         */
         $task = Task::create($validated);
+
+        # https://laravel.com/docs/8.x/eloquent-relationships#updating-many-to-many-relationships
+        //$task->tags()->attach();
+        $task->tags()->sync($validated['tags_id']);
 
         /*$task = new Task();
         $task->user_id = $request->get('user_id');
