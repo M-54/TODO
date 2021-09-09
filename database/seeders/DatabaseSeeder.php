@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Tag;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -24,5 +25,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)
             ->has(Task::factory()->count(3))
             ->create();
+
+      Tag::factory(50)
+        ->create();
     }
 }
