@@ -3,7 +3,9 @@
 @section('title', 'Show ' . $task->title)
 
 @section('content')
-    <h1>{{ $task->title }}</h1>
+    <button onclick="test()">Click Me</button>
+
+    <h1 id="title">{{ $task->title }}</h1>
     <p>{{ $task->description }}</p>
 
     @if($task->deleted_at)
@@ -25,4 +27,17 @@
             <button class="btn btn-outline-danger" type="submit">Delete</button>
         </form>
     @endif
+@endsection
+
+@section('custom_scripts')
+    <script>
+        function test() {
+            $.ajax({
+                'url': 'https://jsonplaceholder.typicode.com/todos/{{ $task->id }}',
+                success: function (result) {
+                    $("#title").html(result.title)
+                }
+            })
+        }
+    </script>
 @endsection
