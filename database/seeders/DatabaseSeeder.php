@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class
         ]);
 
-        // TODO: make random count task
+        // TODO: make random count tas
         \App\Models\User::factory(10)
             ->has(Task::factory()->count(3))
             ->create();

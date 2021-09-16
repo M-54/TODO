@@ -22,8 +22,9 @@ class TaskFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->word,
-            'description' => $this->faker->realText
+            'user_id' => 1,
+            'title' => $this->faker->word(),
+            'description' => $this->faker->realText()
         ];
     }
 }

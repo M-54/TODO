@@ -70,13 +70,12 @@ Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
     ->name('auth.login');
 
-Route::get('test', function () {
-    $collection = collect(['taylor', 'abigail', null, 'ehsan'])
-        ->map(function ($name) {
-            return strtoupper($name);
-        })->reject(function ($name) {
-            return empty($name);
-        });
+Route::get('mail', function () {
+//    \Illuminate\Support\Facades\Mail::to("ehsan@gmail.com")
+//        ->send(new \App\Mail\SampleEmail());
 
-    dd($collection);
+//    \Illuminate\Support\Facades\Mail::to(auth()->user()->email)
+//        ->later(now()->addSeconds(10), new \App\Mail\SampleEmail());
+
+    return new \App\Mail\TaskCreatedMail(\App\Models\Task::find(1));
 });

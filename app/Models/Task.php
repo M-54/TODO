@@ -18,6 +18,10 @@ class Task extends Model
         'is_done'
     ];
 
+    public $casts = [
+        'reminder_date' => 'datetime'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -29,9 +33,9 @@ class Task extends Model
     }
 
     # https://laravel.com/docs/8.x/eloquent-mutators#defining-an-accessor
-    public function getTitleAttribute() {
-        return $this->attributes['id'] . "# " . $this->attributes['title'];
-    }
+//    public function getTitleAttribute() {
+//        return $this->attributes['id'] . "# " . $this->attributes['title'];
+//    }
 
     public function getCountTitleAttribute() {
         return strlen($this->attributes['title']);
