@@ -8,8 +8,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use NotificationChannels\Telegram\TelegramChannel;
 use NotificationChannels\Telegram\TelegramMessage;
-use NotificationChannels\WebPush\WebPushChannel;
-use NotificationChannels\WebPush\WebPushMessage;
+
 
 class SampleNotification extends Notification
 {
@@ -35,7 +34,7 @@ class SampleNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', WebPushChannel::class, TelegramChannel::class];
+        return ['mail'];
     }
 
     /**
@@ -66,13 +65,13 @@ class SampleNotification extends Notification
         ];
     }
 
-    public function toWebPush($notifiable, $notification)
-    {
-        return (new WebPushMessage())
-            ->title($this->task->title)
-            ->body($this->task->description)
-            ->action('Open', route('tasks.show', $this->task));
-    }
+    // public function toWebPush($notifiable, $notification)
+    // {
+    //     return (new WebPushMessage())
+    //         ->title($this->task->title)
+    //         ->body($this->task->description)
+    //         ->action('Open', route('tasks.show', $this->task));
+    // }
 
     public function toTelegram($notifiable)
     {

@@ -13,7 +13,7 @@ use NotificationChannels\WebPush\HasPushSubscriptions;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    use HasPushSubscriptions;
+
 
     /**
      * The attributes that are mass assignable.
@@ -55,4 +55,10 @@ class User extends Authenticatable
         #$this->attributes['password'] = Hash::make($value);
         $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
     }
+
+    public function routeNotificationForMail(){
+
+        return $this->email;
+    }
+
 }

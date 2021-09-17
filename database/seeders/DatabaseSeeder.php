@@ -17,8 +17,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            TaskSeeder::class
         ]);
+
+
 
         // TODO: make random count tas
         \App\Models\User::factory(10)

@@ -7,9 +7,12 @@ use App\Mail\TaskCreatedMail;
 use App\Models\Task;
 use App\Notifications\SampleNotification;
 use Carbon\Carbon;
+use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use PharIo\Manifest\Email;
+use Thomasjohnkane\Snooze\Traits\SnoozeNotifiable;
+
 
 class TaskObserver
 {
@@ -22,7 +25,15 @@ class TaskObserver
 
     public function created(Task $task)
     {
-        $task->notify(new SampleNotification($task));
+
+        $task->notify((new SampleNotification($task))->delay([
+
+            'mail' => $task->reminder_date
+            // 'mail' => $task->reminder_date->,
+
+
+        ]));
+
 //        dispatch(new TaskReminder($task))
 //            ->delay(now()->addWeek());
 
@@ -51,6 +62,6 @@ class TaskObserver
 
     public function forceDeleted(Task $task) {
         //info("forceDeleted " . $task);
-        Storage::disk('public')->delete($task->image);
+        Storage::disk('s3')->delete($task->image);
     }
 }
