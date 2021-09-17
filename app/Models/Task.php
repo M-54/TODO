@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Task extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    use Notifiable;
 
     protected $fillable = [
         'user_id',
@@ -43,5 +45,15 @@ class Task extends Model
 
     public function getReadTimeAttribute() {
         return "10min";
+    }
+
+    public function routeNotificationForMail($notification)
+    {
+        return $this->user->email;
+    }
+
+    public function routeNotificationForSMS()
+    {
+        return $this->user->phone_number;
     }
 }

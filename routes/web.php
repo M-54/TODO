@@ -70,11 +70,14 @@ Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
     ->name('auth.login');
 
-Route::get('translate', function (){
-    echo __('number.number.4.1');
-    echo "<br />";
-   for($i = 1; $i < 3; $i++) {
-       echo __('number.number.' . $i);
-       echo "<br />";
-   }
+Route::get('translate/{locale}', function ($locale = 'fa'){
+    \Illuminate\Support\Facades\App::setLocale($locale);
+
+   return __('auth.failed');
+});
+
+Route::get('sample', function (){
+   $task = \App\Models\Task::find(1);
+
+   $task->notify(new \App\Notifications\SampleNotification());
 });
