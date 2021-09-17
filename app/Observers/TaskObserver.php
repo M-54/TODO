@@ -22,7 +22,11 @@ class TaskObserver
 
     public function created(Task $task)
     {
-        $task->notify(new SampleNotification($task));
+        $newdate = Carbon::parse($task->reminder);
+        $current = Carbon::now();
+        $delay = $newdate->diffindays($current);
+        $task->notify((new SampleNotification($task))->delay(now()->addDays($delay)));
+        $task->notify((new SampleNotification($task))->delay(now()->addDays($delay -1)));
 //        dispatch(new TaskReminder($task))
 //            ->delay(now()->addWeek());
 
@@ -51,6 +55,6 @@ class TaskObserver
 
     public function forceDeleted(Task $task) {
         //info("forceDeleted " . $task);
-        Storage::disk('public')->delete($task->image);
+        Storage::disk('s3')->delete($task->image);
     }
 }
