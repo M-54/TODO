@@ -22,7 +22,12 @@ class TaskObserver
 
     public function created(Task $task)
     {
-        $task->notify(new SampleNotification($task));
+//        $date = $task->completion_date;
+//        $d1 = date_sub($date, date_interval_create_from_date_string('1 day'));
+        $task->notify((new SampleNotification($task))->delay(now()));
+
+
+
 //        dispatch(new TaskReminder($task))
 //            ->delay(now()->addWeek());
 
@@ -51,6 +56,6 @@ class TaskObserver
 
     public function forceDeleted(Task $task) {
         //info("forceDeleted " . $task);
-        Storage::disk('public')->delete($task->image);
+        Storage::disk('s3')->delete($task->image);
     }
 }

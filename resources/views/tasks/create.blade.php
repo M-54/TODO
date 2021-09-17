@@ -36,6 +36,11 @@
             <textarea class="form-control" id="exampleInputDescription1" rows="4" name="description"></textarea>
         </div>
 
+        <div class="mb-3">
+            <label for="exampleInputDescription1" class="form-label">Completion Date</label>
+            <input class="form-control" type="date" id="exampleInputDescription1" name="completion_date">
+        </div>
+
         <div class="form-check mb-3">
             <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="is_done">
             <label class="form-check-label" for="flexCheckDefault">

@@ -6,10 +6,8 @@ use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use NotificationChannels\Telegram\TelegramChannel;
-use NotificationChannels\Telegram\TelegramMessage;
-use NotificationChannels\WebPush\WebPushChannel;
-use NotificationChannels\WebPush\WebPushMessage;
+//use NotificationChannels\Telegram\TelegramChannel;
+//use NotificationChannels\Telegram\TelegramMessage;
 
 class SampleNotification extends Notification
 {
@@ -35,7 +33,8 @@ class SampleNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', WebPushChannel::class, TelegramChannel::class];
+//        return ['mail', TelegramChannel::class];
+        return ['mail'];
     }
 
     /**
@@ -66,26 +65,26 @@ class SampleNotification extends Notification
         ];
     }
 
-    public function toWebPush($notifiable, $notification)
-    {
-        return (new WebPushMessage())
-            ->title($this->task->title)
-            ->body($this->task->description)
-            ->action('Open', route('tasks.show', $this->task));
-    }
+//    public function toWebPush($notifiable, $notification)
+//    {
+//        return (new WebPushMessage())
+//            ->title($this->task->title)
+//            ->body($this->task->description)
+//            ->action('Open', route('tasks.show', $this->task));
+//    }
 
-    public function toTelegram($notifiable)
-    {
-        return TelegramMessage::create()
-            // Optional recipient user id.
-            ->to("596310835")
-            // Markdown supported.
-            ->content("**" . $this->task->description . "**")
-
-            // (Optional) Blade template for the content.
-            // ->view('notification', ['url' => $url])
-
-            // (Optional) Inline Buttons
-            ->button('View Task', route('tasks.show', $this->task));
-    }
+//    public function toTelegram($notifiable)
+//    {
+//        return TelegramMessage::create()
+//            // Optional recipient user id.
+//            ->to("596310835")
+//            // Markdown supported.
+//            ->content("**" . $this->task->description . "**")
+//
+//            // (Optional) Blade template for the content.
+//            // ->view('notification', ['url' => $url])
+//
+//            // (Optional) Inline Buttons
+//            ->button('View Task', route('tasks.show', $this->task));
+//    }
 }
