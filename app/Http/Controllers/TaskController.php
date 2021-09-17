@@ -54,6 +54,7 @@ class TaskController extends Controller
             'user_id' => 'required|integer|exists:users,id',
             'title' => 'required|min:10',
             'description' => 'required',
+            'completion_date' => 'required',
             "tags_id" => "required|array",
             "tags_id.*" => "required|exists:App\Models\Tag,id",
             "file" => "file"
@@ -69,7 +70,7 @@ class TaskController extends Controller
         //$task->tags()->attach();
         $task->tags()->sync($validated['tags_id']);
 
-        $path = $request->file('file')->store('tasks', 'public');
+        $path = $request->file('file')->store('tasks');
         $task->update([
             'image' => $path
         ]);
