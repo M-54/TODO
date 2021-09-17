@@ -56,7 +56,8 @@ class TaskController extends Controller
             'description' => 'required',
             "tags_id" => "required|array",
             "tags_id.*" => "required|exists:App\Models\Tag,id",
-            "file" => "file"
+            "file" => "file",
+            "reminder_date" => "required"
         ]);
 
         // $task = Task::create($request->all());
@@ -69,7 +70,7 @@ class TaskController extends Controller
         //$task->tags()->attach();
         $task->tags()->sync($validated['tags_id']);
 
-        $path = $request->file('file')->store('tasks', 'public');
+        $path = $request->file('file')->store('tasks', 's3');
         $task->update([
             'image' => $path
         ]);
@@ -92,7 +93,9 @@ class TaskController extends Controller
     {
         $task = Task::withTrashed()->findOrFail($id);
 
+
         return view('tasks.show', compact('task'));
+
     }
 
     /**
@@ -139,7 +142,8 @@ class TaskController extends Controller
     {
         $task = Task::withTrashed()->find($id);
 
-        //Storage::delete($task->image);
+        Storage::delete($task->image);
+        
         $task->forceDelete();
 
         return redirect()

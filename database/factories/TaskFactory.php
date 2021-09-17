@@ -24,7 +24,8 @@ class TaskFactory extends Factory
         return [
             'user_id' => 1,
             'title' => $this->faker->word(),
-            'description' => $this->faker->realText()
+            'description' => $this->faker->realText(),
+            'reminder_date' => $this->faker->date()
         ];
     }
 }

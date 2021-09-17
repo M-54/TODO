@@ -58,6 +58,11 @@
             <input type="file" class="form-control" id="exampleInputFile1" name="file">
         </div>
 
+        <div class="mb-3">
+            <label for="exampleInputDate1" class="form-label">Date</label>
+            <input type="date" class="form-control" id="exampleInputDate1"  name="reminder_date">
+        </div>
+
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 @endsection

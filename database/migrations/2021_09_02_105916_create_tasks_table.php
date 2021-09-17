@@ -28,7 +28,7 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->boolean('is_done')->default(false);
-
+            $table->date('reminder_date')->default(now()->addDay());
             $table->timestamps();
         });
     }
