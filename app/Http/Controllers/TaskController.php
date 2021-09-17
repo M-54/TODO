@@ -6,6 +6,7 @@ use App\Models\Tag;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
@@ -55,6 +56,7 @@ class TaskController extends Controller
             'description' => 'required',
             "tags_id" => "required|array",
             "tags_id.*" => "required|exists:App\Models\Tag,id",
+            "file" => "file"
         ]);
 
         // $task = Task::create($request->all());
@@ -66,6 +68,11 @@ class TaskController extends Controller
         # https://laravel.com/docs/8.x/eloquent-relationships#updating-many-to-many-relationships
         //$task->tags()->attach();
         $task->tags()->sync($validated['tags_id']);
+
+        $path = $request->file('file')->store('tasks', 'public');
+        $task->update([
+            'image' => $path
+        ]);
 
         /*$task = new Task();
         $task->user_id = $request->get('user_id');
@@ -125,13 +132,15 @@ class TaskController extends Controller
     {
         Task::find($id)->delete();
 
-        return redirect()
-            ->route('tasks.index');
+        return back();
     }
 
     public function forceDelete($id)
     {
-        Task::withTrashed()->find($id)->forceDelete();
+        $task = Task::withTrashed()->find($id);
+
+        //Storage::delete($task->image);
+        $task->forceDelete();
 
         return redirect()
             ->route('tasks.index');

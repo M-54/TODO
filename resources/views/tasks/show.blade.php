@@ -5,6 +5,8 @@
 @section('content')
     <button onclick="test()">Click Me</button>
 
+    <img src="{{ \Storage::url($task->image) }}" class="img-thumbnail">
+
     <h1 id="title">{{ $task->title }}</h1>
     <p>Title Count is: {{ $task->count_title }}</p>
     <p>Read Time: {{ $task->read_time }}</p>

@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <form class="mt-4" method="post" action="{{ route('tasks.store') }}">
+    <form class="mt-4" method="post" action="{{ route('tasks.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -51,6 +51,11 @@
                     <option value="{{ $tag->id }}">{{ $tag->title }}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleInputFile1" class="form-label">File</label>
+            <input type="file" class="form-control" id="exampleInputFile1" name="file">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>

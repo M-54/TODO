@@ -5,8 +5,11 @@ namespace App\Observers;
 use App\Jobs\TaskReminder;
 use App\Mail\TaskCreatedMail;
 use App\Models\Task;
+use App\Notifications\SampleNotification;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use PharIo\Manifest\Email;
 
 class TaskObserver
 {
@@ -19,8 +22,9 @@ class TaskObserver
 
     public function created(Task $task)
     {
-        dispatch(new TaskReminder($task))
-            ->delay(now()->addWeek());
+        $task->notify(new SampleNotification($task));
+//        dispatch(new TaskReminder($task))
+//            ->delay(now()->addWeek());
 
 //        $task->reminder_date->subDays(2);
 //        $task->created_at->addDays(2);
@@ -44,4 +48,9 @@ class TaskObserver
 //    public function retrieved(Task $task) {
 //        info("retrieved task id: " . $task->id);
 //    }
+
+    public function forceDeleted(Task $task) {
+        //info("forceDeleted " . $task);
+        Storage::disk('public')->delete($task->image);
+    }
 }

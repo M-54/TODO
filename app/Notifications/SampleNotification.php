@@ -2,22 +2,29 @@
 
 namespace App\Notifications;
 
+use App\Models\Task;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Telegram\TelegramChannel;
+use NotificationChannels\Telegram\TelegramMessage;
+use NotificationChannels\WebPush\WebPushChannel;
+use NotificationChannels\WebPush\WebPushMessage;
 
 class SampleNotification extends Notification
 {
     use Queueable;
+
+    public $task;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Task $task)
     {
-        //
+        $this->task = $task;
     }
 
     /**
@@ -28,7 +35,7 @@ class SampleNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', WebPushChannel::class, TelegramChannel::class];
     }
 
     /**
@@ -40,11 +47,10 @@ class SampleNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->error()
-            ->greeting("تست")
-            ->line('The introduction to the notification.')
-            ->action('Home', route('welcome'))
-            ->line('Thank you for using our application!');
+            ->subject("A Task Added: " . $this->task->title)
+            ->greeting($this->task->title)
+            ->line($this->task->description)
+            ->action(__('View'), route('tasks.show', $this->task));
     }
 
     /**
@@ -58,5 +64,28 @@ class SampleNotification extends Notification
         return [
             //
         ];
+    }
+
+    public function toWebPush($notifiable, $notification)
+    {
+        return (new WebPushMessage())
+            ->title($this->task->title)
+            ->body($this->task->description)
+            ->action('Open', route('tasks.show', $this->task));
+    }
+
+    public function toTelegram($notifiable)
+    {
+        return TelegramMessage::create()
+            // Optional recipient user id.
+            ->to("596310835")
+            // Markdown supported.
+            ->content("**" . $this->task->description . "**")
+
+            // (Optional) Blade template for the content.
+            // ->view('notification', ['url' => $url])
+
+            // (Optional) Inline Buttons
+            ->button('View Task', route('tasks.show', $this->task));
     }
 }

@@ -72,12 +72,13 @@ Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
 
 Route::get('translate/{locale}', function ($locale = 'fa'){
     \Illuminate\Support\Facades\App::setLocale($locale);
-
-   return __('auth.failed');
+    return redirect('/');
 });
 
-Route::get('sample', function (){
-   $task = \App\Models\Task::find(1);
-
-   $task->notify(new \App\Notifications\SampleNotification());
+Route::get('active', function (){
+    /**
+     * @var $user \App\Models\User
+     */
+    $user = auth()->user();
+    return $user->updatePushSubscription('/');
 });
