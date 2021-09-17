@@ -37,7 +37,7 @@ class AuthController extends Controller
                 ->with('message', 'ایمیل یا پسورد وارد شده صحیح نیست.');*/
 
             return back()
-                ->with('message', 'ایمیل یا پسورد وارد شده صحیح نیست.');
+                ->with('message', __('auth.failed'));
         }
     }
 

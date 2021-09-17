@@ -70,12 +70,11 @@ Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm
 Route::post('login', [\App\Http\Controllers\AuthController::class, 'login'])
     ->name('auth.login');
 
-Route::get('mail', function () {
-//    \Illuminate\Support\Facades\Mail::to("ehsan@gmail.com")
-//        ->send(new \App\Mail\SampleEmail());
-
-//    \Illuminate\Support\Facades\Mail::to(auth()->user()->email)
-//        ->later(now()->addSeconds(10), new \App\Mail\SampleEmail());
-
-    return new \App\Mail\TaskCreatedMail(\App\Models\Task::find(1));
+Route::get('translate', function (){
+    echo __('number.number.4.1');
+    echo "<br />";
+   for($i = 1; $i < 3; $i++) {
+       echo __('number.number.' . $i);
+       echo "<br />";
+   }
 });

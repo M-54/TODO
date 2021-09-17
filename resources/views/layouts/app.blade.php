@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <title>{{ env('APP_NAME') }} - @yield('title')</title>
+    <title>@lang('Laravel') - @yield('title')</title>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
