@@ -69,7 +69,7 @@ class TaskController extends Controller
         //$task->tags()->attach();
         $task->tags()->sync($validated['tags_id']);
 
-        $path = $request->file('file')->store('tasks', 'public');
+        $path = $request->file('file')->store('tasks');
         $task->update([
             'image' => $path
         ]);

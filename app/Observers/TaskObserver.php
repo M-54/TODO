@@ -22,9 +22,8 @@ class TaskObserver
 
     public function created(Task $task)
     {
-        $task->notify(new SampleNotification($task));
-//        dispatch(new TaskReminder($task))
-//            ->delay(now()->addWeek());
+        //$task->notify(new SampleNotification($task));
+        dispatch(new TaskReminder($task));
 
 //        $task->reminder_date->subDays(2);
 //        $task->created_at->addDays(2);

@@ -63,6 +63,8 @@ Route::group([
 
     # https://laravel.com/docs/8.x/controllers#actions-handled-by-resource-controller
     Route::resource('tags', \App\Http\Controllers\TagController::class);
+
+    Route::resource('posts', \App\Http\Controllers\PostController::class);
 });
 
 Route::get('login', [\App\Http\Controllers\AuthController::class, 'showLoginForm'])
@@ -82,3 +84,34 @@ Route::get('active', function (){
     $user = auth()->user();
     return $user->updatePushSubscription('/');
 });
+
+Route::get('sample', function (){
+   return [
+       'data' => [
+           [
+               'id' => 1
+           ],
+           [
+               'id' => 2
+           ]
+       ]
+   ];
+});
+
+Route::get('testapi', function (){
+    $response = \Illuminate\Support\Facades\Http::get(route('api.tasks.index'));
+
+    return $response->json();
+});
+
+//Route::get('weather', function (){
+//    $response = \Illuminate\Support\Facades\Http::get('api.openweathermap.org/data/2.5/weather', [
+//        'q' => 'tehran',
+//        'appid' => '8516dbc0b619c1a5b25dc01f1ce492b1',
+//        'units' => 'metric'
+//    ]);
+//
+//    return $response->json();
+//});
+
+Route::get('weather', \App\Http\Controllers\WeatherController::class);
