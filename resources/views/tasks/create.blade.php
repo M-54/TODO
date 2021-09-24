@@ -44,6 +44,11 @@
         </div>
 
         <div class="mb-3">
+            <label for="reminder" class="form-label">reminder</label>
+            <input type="date" class="form-control" id="reminder" name="reminder">
+        </div>
+
+        <div class="mb-3">
             <label for="exampleInputTags1" class="form-label">Tags</label>
 
             <select id="exampleInputTags1" class="form-select" name="tags_id[]" multiple>

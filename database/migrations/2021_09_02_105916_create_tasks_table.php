@@ -27,6 +27,7 @@ class CreateTasksTable extends Migration
 
             $table->string('title');
             $table->text('description');
+            $table->string('reminder')->nullable();
             $table->boolean('is_done')->default(false);
 
             $table->timestamps();

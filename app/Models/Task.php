@@ -6,20 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use NotificationChannels\WebPush\HasPushSubscriptions;
+
 
 class Task extends Model
 {
     use HasFactory;
     use SoftDeletes;
     use Notifiable;
-    use HasPushSubscriptions;
 
     protected $fillable = [
         'user_id',
         'title',
         'description',
         'image',
+        'reminder',
         'is_done'
     ];
 
